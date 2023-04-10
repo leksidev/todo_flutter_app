@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'UI/screens/tasks_screen.dart';
+import 'package:todo_flutter_app/models/task_data.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,6 +12,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return ChangeNotifierProvider(
+      create: (context) => TaskData(),
+      child: MaterialApp(
+        theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: Colors.indigo.shade700,
+              background: Colors.indigo.shade500),
+        ),
+        home: const TasksScreen(),
+      ),
+    );
   }
 }
